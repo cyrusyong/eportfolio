@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #efe6d6;
+  color: #4a3b30;
+  font-family: 'Nunito Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #c05f2c; color: #fbf6ec; }
+a { color: #a0492a; text-decoration: none; }
+a:hover { color: #c05f2c; }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #e7dcc7; }
+::-webkit-scrollbar-thumb { background: #cbb692; border: 2px solid #e7dcc7; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #b8a179; }
