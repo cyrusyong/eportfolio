@@ -88,7 +88,7 @@ function ImagePlaceholder({ label, height }) {
 const primpadTags = ['Raspberry Pi Pico', 'RP2040', 'Bare-metal C', 'TinyUSB', 'USB HID', 'KiCad', '3D Printing']
 
 const keyMap = [
-  { key: 'K1', desc: "Autoclicker, send 'F' few seconds" },
+  { key: 'K1', desc: "Autoclicker, send 'F' every few seconds" },
   { key: 'K2', desc: 'Launch app + skip loading screens' },
   { key: 'K3', desc: 'Open Discord + send message' },
   { key: 'K4', desc: 'Hold 3s to make PC shut down in 30s', danger: true },
@@ -188,18 +188,18 @@ export default function Projects() {
               shows up on any computer as a standard USB HID composite device: part keyboard, part mouse.
             </p>
             <p style={{ margin: '0 0 14px', fontSize: 17, lineHeight: 1.68, color: '#4a3b30' }}>
-              Each key is mapped to a macro I actually use. The first is an autoclicker: press it and
+              Each key is mapped to a macro I use. The first is an autoclicker: press it and
               the firmware fires a rapid, repeating stream of 'F' keypresses. I use this for games and
               anything that rewards mashing one key. The second is an app launcher: a single tap opens
               a pinned app from the Windows taskbar, then runs a timed series of presses to advance
               through its loading and start up screens so I skip straight to the part I care about.
-              The third a macro that brings Discord to the foreground, opens a specific conversation,
+              The third key is a macro that brings Discord to the foreground, opens a specific conversation,
               types a preset message, and sends it, all from one press. The fourth is a press and hold
               button. Holding it for three full seconds schedules the PC to shut down in thirty seconds,
               with the long hold acting as a safeguard against firing it by accident.
             </p>
             <p style={{ margin: '0 0 14px', fontSize: 17, lineHeight: 1.68, color: '#4a3b30' }}>
-              I built PrimPad to reinforce what I learned about the full stack. On the firmware side I
+              I built PrimPad to practice building every layer of the stack. On the firmware side I
               handled USB descriptor setup and key event reporting through TinyUSB, debounced the
               switches, and built the timing logic for the multi step macros. The launcher and Discord
               keys in particular depend on carefully spaced delays so the app has time to respond

@@ -50,7 +50,7 @@ const roadmap = [
     border: '#e2d4ba',
     bg: '#f5eddd',
     title: 'Communication Protocols',
-    desc: 'Dig into the protocols like SPI, I2C, UART. Explore more like WiFi, Bluetooth and CAN.',
+    desc: 'Dig into the protocols like SPI, I2C, UART. Explore additional protocols like WiFi, Bluetooth and CAN.',
   },
   {
     badge: 'Next',

@@ -97,7 +97,7 @@ export default function About() {
             >
               I'm currently pursuing a dual B.S. in Computer Science and
               Electrical Engineering at Georgia Tech, with a minor in Robotics,
-              and I spend my time learning more about hardware each day.
+              and I spend most of my free time discovering new ideas with hardware.
             </p>
             <p
               style={{
@@ -112,7 +112,7 @@ export default function About() {
               and 3D print an enclosure to finish it off. Taking a project from
               an idea in my head to a physical thing sitting on my desk is what
               I love about the world of Electrical Engineering. I like to see
-              the things I create come to life and move around in the real
+              the things I create come to life and interact with people in the real
               world.
             </p>
           </div>

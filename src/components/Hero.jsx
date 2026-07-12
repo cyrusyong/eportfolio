@@ -61,7 +61,7 @@ export default function Hero() {
             fontSize: 18, lineHeight: 1.65, color: '#4a3b30', maxWidth: '56ch',
           }}>
             I'm a Computer Science + Electrical Engineering student at Georgia Tech with a
-            simple life goal of building embedded systems from the ground up, for the rest of my life. I love the whole loop
+            simple goal of building embedded systems from the ground up, for the rest of my life. I love the whole loop
             of firmware in C, designing the PCB in KiCad, wiring, testing, and 3D printing the
             enclosure that holds it all. Seeing what I built come to life in the physical world
             is everything.
