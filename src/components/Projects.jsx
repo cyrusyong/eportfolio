@@ -72,26 +72,107 @@ function Chip({ label, small }) {
   )
 }
 
-function ImagePlaceholder({ label, height }) {
-  return (
-    <div style={{
-      height, background: '#f5eddd', border: '1px solid #dccbb0', borderRadius: 12,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      color: '#b09a7d', fontFamily: "'Nunito Sans', sans-serif",
-      fontSize: 13, fontWeight: 600, textAlign: 'center', padding: 16,
-    }}>
-      {label}
-    </div>
-  )
-}
-
 const primpadTags = ['Raspberry Pi Pico', 'RP2040', 'Bare-metal C', 'TinyUSB', 'USB HID', 'KiCad', '3D Printing']
 
 const keyMap = [
   { key: 'K1', desc: "Autoclicker, send 'F' every few seconds" },
   { key: 'K2', desc: 'Launch app + skip loading screens' },
   { key: 'K3', desc: 'Open Discord + send message' },
-  { key: 'K4', desc: 'Hold 3s to make PC shut down in 30s', danger: true },
+  { key: 'K4', desc: 'Press to make PC shut down in 30s', danger: true },
+]
+
+const timeline = [
+  {
+    date: 'June 15, 2026 · 10:13 PM',
+    text: "Have a Raspberry Pi Pico + 4 SPST switches on the breadboard. Plan: add four LEDs and each switch corresponds to one LED and lights it up on press.",
+  },
+  {
+    date: 'June 15, 2026 · 11:52 PM',
+    text: "Autoclicker functionality implemented on the breadboard. Need to swap the toggle switches functionality for push buttons to match real mechanical keyboard switches.",
+  },
+  {
+    date: 'June 16, 2026 · 12:19 AM',
+    text: "Replaced to push button switches. SW1 Autoclicker is complete. LED turns on and the 'F' key is sent at random intervals between 0.5 and 1.5 seconds.",
+    img: '/assets/IMG_9982.jpeg',
+    imgAlt: 'Breadboard prototype with push button switches',
+  },
+  {
+    date: 'June 17, 2026 · 12:36 AM',
+    text: "Added button debouncer to SW1 which fixed the issue where the switch needed to be held down for seconds before the function fired. Started implementing SW2: opening an app through the Windows Start menu.",
+  },
+  {
+    date: 'June 17, 2026 · 2:34 PM',
+    text: "All four switch firmware functions are done. Needs testing later. Moving on to schematic design.",
+  },
+  {
+    date: 'June 17, 2026 · 3:05 PM',
+    text: "Schematic complete and footprints assigned. Checked the Hive's parts inventory. I am planning to use 4 Cherry MX mechanical keyboard switches. Now arranging parts in the PCB editor.",
+    img: '/assets/kicad_layout.png',
+    imgAlt: 'KiCad PCB layout',
+  },
+  {
+    date: 'June 17, 2026 · 4:03 PM',
+    text: "PCB design finished. Generated Gerber and drill files. Will go to the Hive tomorrow to have the board drilled out.",
+  },
+  {
+    date: 'June 17, 2026 · 10:58 PM',
+    text: "SW3 bug: if the target app is minimized but not closed, typing its name in the Start menu and hitting Enter won't reopen it. The app has to be fully closed for the macro to work. Working on a fix.",
+  },
+  {
+    date: 'June 17, 2026 · 11:41 PM',
+    text: "Firmware is complete. Fragile, but it works.",
+  },
+  {
+    date: 'June 21, 2026 · 8:42 PM',
+    text: "Ordered the PCBs on JLCPCB as a backup in case the Hive machines can't get fixed in time. Also installed Fusion 360 to start designing the 3D enclosure.",
+  },
+  {
+    date: 'July 5, 2026 · 5:29 PM',
+    text: "PCBs arrived from JLCPCB.",
+  },
+  {
+    date: 'July 9, 2026 · 3:07 PM',
+    text: "Got the SMD red LED and resistor. SMD components were extremely small used the Hive's microscope station to solder them. Struggled but got it done.",
+    img: '/assets/wiring.png',
+    imgAlt: 'Internals and wiring',
+  },
+  {
+    date: 'July 9, 2026 · 11:59 AM',
+    text: "All electronic components are soldered on. Cherry MX switches are mounted. Just needs final testing on PC and keycaps.",
+  },
+  {
+    date: 'July 20, 2026 · 8:29 PM',
+    text: "First iteration of the enclosure printed. All PCB mounting holes line up with the board.",
+    img: '/assets/3d_design.png',
+    imgAlt: '3D printed enclosure',
+  },
+]
+
+const skills = [
+  {
+    label: 'USB HID & TinyUSB',
+    desc: 'Configured USB descriptors so the RP2040 enumerates on any PC as a composite HID device. Part keyboard, part mouse.',
+  },
+  {
+    label: 'Button Debouncing',
+    desc: 'Diagnosed why a single press registered as multiple clicks and implemented a 50ms debounce window in firmware to filter it out.',
+  },
+  {
+    label: 'GPIO & Timing Logic',
+    desc: 'Used GPIO interrupts to detect presses and built timer spaced macro sequences so the PC has time to respond between each synthetic keypress.',
+  },
+  {
+    label: 'PCB Design (KiCad)',
+    desc: "Drew the schematic, assigned footprints against the Hive's actual parts inventory, laid out the board, and generated Gerber and drill files for fabrication.",
+  },
+  {
+    label: 'SMD Soldering & Verification',
+    desc: "Hand soldered a SMD LED and resistor under the Hive's microscope, then verified every connection with a multimeter before powering the board.",
+  },
+  {
+    label: '3D Modeling & Printing',
+    desc: 'Designed the enclosure from scratch in Fusion 360 and printed it so the PCB mounting holes lined up on the first iteration.',
+  },
 ]
 
 const moreProjects = [
@@ -123,6 +204,8 @@ const moreProjects = [
 
 export default function Projects() {
   const [lightbox, setLightbox] = useState(null)
+  const [showDetails, setShowDetails] = useState(false)
+
   return (
     <>
     {lightbox && <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />}
@@ -152,9 +235,9 @@ export default function Projects() {
         </div>
 
         {/* Hero image */}
-        <div onClick={() => setLightbox({ src: '/assets/hero.jpeg', alt: 'PrimPad hero shot' })}
-          style={{ height: 360, border: '1px solid #dccbb0', borderRadius: 12, overflow: 'hidden', background: '#f5eddd', marginBottom: 12, cursor: 'zoom-in' }}>
-          <img src="/assets/hero.jpeg" alt="PrimPad hero shot" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        <div onClick={() => setLightbox({ src: '/assets/final_cropped.jpg', alt: 'PrimPad hero shot' })}
+          style={{ height: 560, border: '1px solid #dccbb0', borderRadius: 12, overflow: 'hidden', background: '#f5eddd', marginBottom: 12, cursor: 'zoom-in' }}>
+          <img src="/assets/final_cropped.jpg" alt="PrimPad hero shot" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
 
         {/* Gallery grid */}
@@ -174,7 +257,14 @@ export default function Projects() {
             style={{ height: 190, border: '1px solid #dccbb0', borderRadius: 12, overflow: 'hidden', background: '#f5eddd', cursor: 'zoom-in' }}>
             <img src="/assets/wiring.png" alt="Internals / wiring" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
-          <ImagePlaceholder label="Video Demo In Progress" height={190} />
+          <div style={{ height: 190, border: '1px solid #dccbb0', borderRadius: 12, overflow: 'hidden', background: '#f5eddd' }}>
+            <video
+              src="/assets/IMG_0218.mp4"
+              controls
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
         </div>
 
         {/* Description + Key Map */}
@@ -194,9 +284,7 @@ export default function Projects() {
               a pinned app from the Windows taskbar, then runs a timed series of presses to advance
               through its loading and start up screens so I skip straight to the part I care about.
               The third key is a macro that brings Discord to the foreground, opens a specific conversation,
-              types a preset message, and sends it, all from one press. The fourth is a press and hold
-              button. Holding it for three full seconds schedules the PC to shut down in thirty seconds,
-              with the long hold acting as a safeguard against firing it by accident.
+              types a preset message, and sends it, all from one press. The fourth button is to shut down the PC in thirty seconds.
             </p>
             <p style={{ margin: '0 0 14px', fontSize: 17, lineHeight: 1.68, color: '#4a3b30' }}>
               I built PrimPad to practice building every layer of the stack. On the firmware side I
@@ -241,6 +329,119 @@ export default function Projects() {
           </div>
 
         </div>
+
+        {/* Build Documentary toggle */}
+        <div style={{ margin: '32px 0 0', display: 'flex', justifyContent: 'center' }}>
+          <button
+            onClick={() => setShowDetails(v => !v)}
+            style={{
+              fontFamily: "'Nunito Sans', sans-serif", fontWeight: 800, fontSize: 15,
+              color: showDetails ? '#7a5c3e' : '#fbf6ec',
+              background: showDetails ? 'transparent' : 'var(--acc, #c05f2c)',
+              border: showDetails ? '1.5px solid #cbb692' : '1.5px solid transparent',
+              padding: '13px 28px', borderRadius: 9, cursor: 'pointer',
+              boxShadow: showDetails ? 'none' : '0 3px 12px rgba(160,73,42,.28)',
+              transition: 'all .15s ease',
+            }}
+          >
+            {showDetails ? '▲ Hide Build Documentary' : '▼ View Build Documentary'}
+          </button>
+        </div>
+
+        {/* Documentary panel */}
+        {showDetails && (
+          <div style={{ marginTop: 36 }}>
+            <div style={{ height: 1, background: '#e2d4ba', marginBottom: 36 }} />
+
+            {/* Section header helper */}
+            {[
+              {
+                label: '01', title: 'The Process',
+                content: (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                    {timeline.map(({ date, text, img, imgAlt }, i) => (
+                      <div key={i} style={{ display: 'flex', gap: 0 }}>
+                        {/* Left spine */}
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 32, flexShrink: 0 }}>
+                          <div style={{
+                            width: 11, height: 11, borderRadius: '50%', flexShrink: 0, marginTop: 3,
+                            background: img ? 'var(--acc, #c05f2c)' : '#cbb692',
+                            border: img ? '2px solid #f7d7c0' : '2px solid #e2d4ba',
+                          }} />
+                          {i < timeline.length - 1 && (
+                            <div style={{ width: 2, flex: 1, background: '#e2d4ba', minHeight: 24 }} />
+                          )}
+                        </div>
+
+                        {/* Entry content */}
+                        <div style={{ paddingLeft: 16, paddingBottom: i < timeline.length - 1 ? 28 : 0, flex: 1 }}>
+                          <div style={{
+                            fontFamily: "'Nunito Sans', sans-serif", fontWeight: 800, fontSize: 12,
+                            color: '#a76f2b', letterSpacing: '.5px', textTransform: 'uppercase', marginBottom: 5,
+                          }}>{date}</div>
+                          <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                            <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: '#4a3b30', flex: '1 1 260px' }}>
+                              {text}
+                            </p>
+                            {img && (
+                              <div
+                                onClick={() => setLightbox({ src: img, alt: imgAlt })}
+                                style={{
+                                  flexShrink: 0, cursor: 'zoom-in',
+                                  border: '1px solid #dccbb0', borderRadius: 10, overflow: 'hidden',
+                                  boxShadow: '0 2px 10px rgba(90,70,50,.1)',
+                                }}
+                              >
+                                <img
+                                  src={img}
+                                  alt={imgAlt}
+                                  style={{ display: 'block', width: 220, height: 160, objectFit: 'cover' }}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              },
+              {
+                label: '02', title: 'ECE Skills Gained',
+                content: (
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
+                    {skills.map(({ label, desc }) => (
+                      <div key={label} style={{
+                        border: '1px solid #e2d4ba', background: '#f5eddd',
+                        borderRadius: 12, padding: '16px 18px',
+                      }}>
+                        <div style={{
+                          fontFamily: "'Bitter', serif", fontWeight: 700, fontSize: 15,
+                          color: 'var(--acc, #c05f2c)', marginBottom: 6,
+                        }}>{label}</div>
+                        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: '#4a3b30' }}>{desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              },
+            ].map(({ label, title, content }) => (
+              <div key={label} style={{ marginBottom: 48 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
+                  <span style={{
+                    fontFamily: "'Nunito Sans', sans-serif", fontWeight: 800, fontSize: 11,
+                    color: '#b09a7d', letterSpacing: '1.5px', textTransform: 'uppercase',
+                  }}>{label}</span>
+                  <h4 style={{
+                    margin: 0, fontFamily: "'Bitter', serif", fontWeight: 700,
+                    fontSize: 21, color: '#5a4632',
+                  }}>{title}</h4>
+                </div>
+                {content}
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Divider */}
         <div style={{ height: 1, background: '#e2d4ba', margin: '32px 0 26px' }} />
