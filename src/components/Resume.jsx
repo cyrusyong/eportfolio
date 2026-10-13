@@ -18,7 +18,7 @@ export default function Resume() {
             Resume
           </span>
           <a
-            href="/assets/Cyrus-Yong-Resume.pdf"
+            href="/assets/cyrus_resume_embedded_2027.pdf"
             download="Cyrus-Yong-Resume.pdf"
             style={{
               fontFamily: "'Nunito Sans', sans-serif", fontWeight: 800, fontSize: 14,
@@ -34,7 +34,7 @@ export default function Resume() {
             overflow: 'hidden', background: '#ffffff',
           }}>
             <iframe
-              src="/assets/Cyrus-Yong-Resume.pdf#toolbar=0&view=FitH"
+              src="/assets/cyrus_resume_embedded_2027.pdf#toolbar=0&view=FitH"
               title="Cyrus Yong Resume"
               style={{ width: '100%', height: 720, border: 0, display: 'block' }}
             />

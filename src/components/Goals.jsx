@@ -62,8 +62,8 @@ const roadmap = [
     desc: 'Learn RTOS concepts like tasks, scheduling, and synchronization and build a project using FreeRTOS.',
   },
   {
-    badge: 'Goal',
-    badgeBg: 'var(--acc, #c05f2c)',
+    badge: 'Completed',
+    badgeBg: '#6f8250',
     badgeColor: '#fbf6ec',
     border: '#e2d4ba',
     bg: '#f5eddd',
