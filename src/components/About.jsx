@@ -64,7 +64,7 @@ const glanceItems = [
   { label: "Location", value: "Atlanta, GA" },
   { label: "Focus", value: "Embedded / Firmware" },
   { label: "Stack", value: "Bare-metal C" },
-  { label: "Status", value: "Learning & Building", accent: true },
+  { label: "Status", value: "Interning & Building", accent: true },
 ];
 
 export default function About() {

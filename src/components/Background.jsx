@@ -143,29 +143,58 @@ export default function Background() {
               fontFamily: "'Bitter', serif", fontWeight: 700, fontSize: 17,
               color: 'var(--acc, #c05f2c)', marginBottom: 18,
             }}>Experience</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
-              <span style={{ fontFamily: "'Bitter', serif", fontWeight: 700, fontSize: 17, color: '#4a3b30' }}>
-                Undergraduate Researcher — Georgia Tech
-              </span>
-              <span style={{ fontWeight: 700, fontSize: 14, color: '#a76f2b', whiteSpace: 'nowrap' }}>
-                Aug 2025 – May 2026
-              </span>
+
+            <div style={{ marginBottom: 22 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
+                <span style={{ fontFamily: "'Bitter', serif", fontWeight: 700, fontSize: 17, color: '#4a3b30' }}>
+                  Software Engineering Intern — Georgia Tech Research Institute (GTRI)
+                </span>
+                <span style={{ fontWeight: 700, fontSize: 14, color: '#a76f2b', whiteSpace: 'nowrap' }}>
+                  Aug 2026 – Dec 2026
+                </span>
+              </div>
+              <div style={{ fontSize: 16, color: '#7a6858', marginTop: 5 }}>
+                Applied Systems Laboratory · Systems Integration Division
+              </div>
+              <div style={{ fontSize: 16, color: '#4a3b30', marginTop: 10, lineHeight: 1.6 }}>
+                {[
+                  'Migrating legacy C++ code to FACE-compliant architecture, working in the transport services (TSS) layer that routes device-service data to the ports mission components subscribe to.',
+                  'Refactored message-handling code for a communication protocol, removing duplicated memcpy logic and passing messages directly to existing handlers to reduce redundancy.',
+                  'Mapped the data each FACE message requires and where it originates, tracking sources and dependencies to guide the migration.',
+                ].map((bullet, i) => (
+                  <div key={i} style={{ display: 'flex', gap: 9, marginBottom: i < 2 ? 7 : 0 }}>
+                    <span style={{ color: 'var(--acc, #c05f2c)', fontWeight: 800 }}>•</span>
+                    <span>{bullet}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ fontSize: 16, color: '#7a6858', marginTop: 5 }}>
-              Intelligent Platform for Crowdsourcing (VIP)
+
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
+                <span style={{ fontFamily: "'Bitter', serif", fontWeight: 700, fontSize: 17, color: '#4a3b30' }}>
+                  Undergraduate Researcher — Georgia Tech
+                </span>
+                <span style={{ fontWeight: 700, fontSize: 14, color: '#a76f2b', whiteSpace: 'nowrap' }}>
+                  Aug 2025 – May 2026
+                </span>
+              </div>
+              <div style={{ fontSize: 16, color: '#7a6858', marginTop: 5 }}>
+                Intelligent Platform for Crowdsourcing (VIP)
+              </div>
+              <div style={{ fontSize: 16, color: '#4a3b30', marginTop: 10, lineHeight: 1.6 }}>
+                {[
+                  'Built a structured data-extraction pipeline with LiteLLM on GT\'s PACE GPU cluster.',
+                  'Developed a RAG chatbot backend with controlled retrieval to reduce hallucinations.',
+                ].map((bullet, i) => (
+                  <div key={i} style={{ display: 'flex', gap: 9, marginBottom: i < 1 ? 7 : 0 }}>
+                    <span style={{ color: 'var(--acc, #c05f2c)', fontWeight: 800 }}>•</span>
+                    <span>{bullet}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ fontSize: 16, color: '#4a3b30', marginTop: 10, lineHeight: 1.6 }}>
-              {[
-                'Built a structured data-extraction pipeline with LiteLLM on GT\'s PACE GPU cluster.',
-                'Developed a RAG chatbot backend with controlled retrieval to reduce hallucinations.',
-                'Designed a React + FastAPI full-stack app with custom document intake (BeautifulSoup, PyPDF).',
-              ].map((bullet, i) => (
-                <div key={i} style={{ display: 'flex', gap: 9, marginBottom: i < 2 ? 7 : 0 }}>
-                  <span style={{ color: 'var(--acc, #c05f2c)', fontWeight: 800 }}>•</span>
-                  <span>{bullet}</span>
-                </div>
-              ))}
-            </div>
+
           </div>
 
         </div>
